@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createList, getLists, addItemToList, getItems } from './databaseServices';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface DashboardProps {
   userId: string;
@@ -19,10 +20,9 @@ interface List {
 
 const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
   const [lists, setLists] = useState<List[]>([]);
-  const [newListTitle, setNewListTitle] = useState('');
+  const [currentListIndex, setCurrentListIndex] = useState(0);
   const [newItemTitle, setNewItemTitle] = useState('');
-  const [newItemNotes, setNewItemNotes] = useState('');
-  const [selectedListId, setSelectedListId] = useState<string | null>(null);
+  const [newListTitle, setNewListTitle] = useState('');
 
   useEffect(() => {
     fetchLists();
@@ -54,11 +54,10 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
   };
 
   const handleAddItem = async () => {
-    if (selectedListId) {
+    if (lists.length > 0) {
       try {
-        await addItemToList(userId, selectedListId, newItemTitle, newItemNotes);
+        await addItemToList(userId, lists[currentListIndex].id, newItemTitle, '');
         setNewItemTitle('');
-        setNewItemNotes('');
         fetchLists();
       } catch (error) {
         console.error('Error adding item:', error);
@@ -66,10 +65,54 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
     }
   };
 
+  const handlePrevList = () => {
+    setCurrentListIndex((prevIndex) => 
+      prevIndex > 0 ? prevIndex - 1 : lists.length - 1
+    );
+  };
+
+  const handleNextList = () => {
+    setCurrentListIndex((prevIndex) => 
+      prevIndex < lists.length - 1 ? prevIndex + 1 : 0
+    );
+  };
+
   return (
     <div className="dashboard">
-      <h2>Your Lists</h2>
-      <div>
+      <div className="list-carousel">
+        <button onClick={handlePrevList} className="carousel-button">
+          <ChevronLeft size={24} />
+        </button>
+        {lists.length > 0 ? (
+          <div className="list-name">
+            <h2>{lists[currentListIndex].title}</h2>
+          </div>
+        ) : (
+          <div className="list-name">
+            <h2>No Lists</h2>
+          </div>
+        )}
+        <button onClick={handleNextList} className="carousel-button">
+          <ChevronRight size={24} />
+        </button>
+      </div>
+      {lists.length > 0 && (
+        <ul className="items-list">
+          {lists[currentListIndex].items.map((item) => (
+            <li key={item.id}>{item.title}</li>
+          ))}
+        </ul>
+      )}
+      <div className="add-item-form">
+        <input
+          type="text"
+          value={newItemTitle}
+          onChange={(e) => setNewItemTitle(e.target.value)}
+          placeholder="New Item Title"
+        />
+        <button onClick={handleAddItem} className="add-item-button">Add Item</button>
+      </div>
+      <div className="add-list-form">
         <input
           type="text"
           value={newListTitle}
@@ -78,38 +121,6 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
         />
         <button onClick={handleCreateList}>Create List</button>
       </div>
-      <ul>
-        {lists.map((list) => (
-          <li key={list.id} onClick={() => setSelectedListId(list.id)}>
-            <h3>{list.title}</h3>
-            <ul>
-              {list.items.map((item) => (
-                <li key={item.id}>
-                  <strong>{item.title}</strong>: {item.notes}
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
-      {selectedListId && (
-        <div>
-          <h3>Add Item to Selected List</h3>
-          <input
-            type="text"
-            value={newItemTitle}
-            onChange={(e) => setNewItemTitle(e.target.value)}
-            placeholder="Item Title"
-          />
-          <input
-            type="text"
-            value={newItemNotes}
-            onChange={(e) => setNewItemNotes(e.target.value)}
-            placeholder="Item Notes"
-          />
-          <button onClick={handleAddItem}>Add Item</button>
-        </div>
-      )}
     </div>
   );
 };

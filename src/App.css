@@ -75,39 +75,73 @@ button:hover {
 
 /* ========== Dashboard Component ========== */
 .dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
-  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.dashboard h2 {
+.list-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 8px;
   margin-bottom: 20px;
 }
 
-.dashboard input {
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+.list-name {
+  flex-grow: 1;
+  text-align: center;
 }
 
-.dashboard button {
-  margin-top: 10px;
-  padding: 8px 16px;
+.carousel-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9333ea;
 }
 
-.dashboard ul {
+.items-list {
   list-style-type: none;
   padding: 0;
+  width: 100%;
 }
 
-.dashboard li {
+.items-list li {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.add-item-form, .add-list-form {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.add-item-form input, .add-list-form input {
+  flex-grow: 1;
   padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-top: 10px;
+  border-radius: 4px 0 0 4px;
+}
+
+.add-item-button, .add-list-form button {
+  padding: 10px 20px;
+  background-color: #9333ea;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
   cursor: pointer;
 }
 
-.dashboard li:hover {
-  background-color: #f9f9f9;
+.add-item-button:hover, .add-list-form button:hover {
+  background-color: #7e22ce;
 }
