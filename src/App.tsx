@@ -20,20 +20,24 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Welcome to List Builder</h1>
+      </header>
+      <main className="App-main">
         {user ? (
-          <>
-            <Dashboard userId={user.uid} />
-            <button className="logout-button" onClick={signOutUser}>
-              Log Out
-            </button>
-          </>
+          <Dashboard userId={user.uid} />
         ) : (
           <div>
             <SignInForm />
             <SignUpForm />
           </div>
         )}
-      </header>
+      </main>
+      {user && (
+        <footer className="App-footer">
+          <button className="logout-button" onClick={signOutUser}>
+            Log Out
+          </button>
+        </footer>
+      )}
     </div>
   );
 }

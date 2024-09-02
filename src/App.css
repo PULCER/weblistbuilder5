@@ -2,14 +2,23 @@
 .App {
   text-align: center;
   font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .App-header {
   padding: 20px;
   background-color: #f0f0f0;
   border-bottom: 1px solid #ddd;
-  margin-bottom: 20px;
-  position: relative;
+}
+
+.App-main {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 button {
@@ -25,6 +34,11 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+.logout-button {
+  width: 100%;
+  max-width: 200px;
 }
 
 /* Logout button position */
