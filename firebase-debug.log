@@ -1,0 +1,96 @@
+[debug] [2024-09-02T18:01:46.898Z] ----------------------------------------------------------------------
+[debug] [2024-09-02T18:01:46.899Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2024-09-02T18:01:46.900Z] CLI Version:   13.10.1
+[debug] [2024-09-02T18:01:46.900Z] Platform:      darwin
+[debug] [2024-09-02T18:01:46.900Z] Node Version:  v20.11.1
+[debug] [2024-09-02T18:01:46.900Z] Time:          Mon Sep 02 2024 11:01:46 GMT-0700 (Pacific Daylight Time)
+[debug] [2024-09-02T18:01:46.900Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-09-02T18:01:46.936Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-09-02T18:01:46.936Z] > authorizing via signed-in user (anthony@pulcer.net)
+[debug] [2024-09-02T18:01:46.936Z] [iam] checking project listbuilder5 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-09-02T18:01:46.936Z] > refreshing access token with scopes: []
+[debug] [2024-09-02T18:01:46.937Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-09-02T18:01:46.937Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-09-02T18:01:47.107Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-09-02T18:01:47.107Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-09-02T18:01:47.122Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/listbuilder5:testIamPermissions [none]
+[debug] [2024-09-02T18:01:47.122Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/listbuilder5:testIamPermissions x-goog-quota-user=projects/listbuilder5
+[debug] [2024-09-02T18:01:47.123Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/listbuilder5:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-09-02T18:01:47.473Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/listbuilder5:testIamPermissions 200
+[debug] [2024-09-02T18:01:47.473Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/listbuilder5:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-09-02T18:01:47.473Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/listbuilder5 [none]
+[debug] [2024-09-02T18:01:47.964Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/listbuilder5 200
+[debug] [2024-09-02T18:01:47.964Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/listbuilder5 {"projectId":"listbuilder5","projectNumber":"384044912284","displayName":"listbuilder5","name":"projects/listbuilder5","resources":{"hostingSite":"listbuilder5"},"state":"ACTIVE","etag":"1_f0bd735e-c34a-4520-873e-1d5ad12f7cb5"}
+[info] 
+[info] === Deploying to 'listbuilder5'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2024-09-02T18:01:47.971Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/listbuilder5/versions [none]
+[debug] [2024-09-02T18:01:47.971Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/listbuilder5/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2024-09-02T18:01:49.388Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/listbuilder5/versions 200
+[debug] [2024-09-02T18:01:49.389Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/listbuilder5/versions {"name":"projects/384044912284/sites/listbuilder5/versions/d393a3e233e9db4a","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[listbuilder5]: beginning deploy... 
+[info] i  hosting[listbuilder5]: found 14 files in build 
+[debug] [2024-09-02T18:01:49.398Z] [hosting] uploading with 200 concurrency
+[debug] [2024-09-02T18:01:49.555Z] [hosting] hash cache [YnVpbGQ] stored for 14 files
+[debug] [2024-09-02T18:01:49.556Z] [hosting][hash queue][FINAL] {"max":151,"min":5,"avg":17.785714285714285,"active":0,"complete":14,"success":14,"errored":0,"retried":0,"total":14,"elapsed":155}
+[debug] [2024-09-02T18:01:49.556Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/384044912284/sites/listbuilder5/versions/d393a3e233e9db4a:populateFiles [none]
+[debug] [2024-09-02T18:01:49.556Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/384044912284/sites/listbuilder5/versions/d393a3e233e9db4a:populateFiles {"files":{"/asset-manifest.json":"0b973d9d789f97208ac486f1a51030700418a04f07f18fa8fd9b8b6e1c418a51","/index.html":"003f5907608d654abe82f565916c11ae59fe51ffc630076c6233932944aec0d2","/logo192.png":"f66564670b5bfe49f3f04a5b63107bae60f4a7736f1d3b83aa0115f7acf45150","/favicon.ico":"1463be9bedc82e16f9364eec7a1f5152cbe56229401381eed65c1496cb884407","/robots.txt":"391d14b3c2f8c9143a27a28c7399585142228d4d1bdbe2c87ac946de411fa9a2","/manifest.json":"4e1d3adad9ce7e17c0d13fac197f1c27091906f4ecf3909c9f51247bff345118","/static/css/main.e6c13ad2.css":"7dc117daa25a4309dbab4c1304a676f1531a2a3d680260e1107371912f928473","/static/css/main.e6c13ad2.css.map":"cc301afafc706597c201efb487db6e60f84d27f49828b760f0c3f3a28f314c28","/logo512.png":"2356e0b814e58a349935c8de17226873d615d088a867d591fef48a64c80c9a2f","/static/js/453.66a643bc.chunk.js":"4ebe60e684bb02e96e7cf0a0a94204eb5be957cbfe256e0ec7339ab3bdc6b04a","/static/js/main.d9866310.js.LICENSE.txt":"031468a472dcfee22df28cae9350bfe664da05ba6eb3434a5ff25f3af913b6dd","/static/js/453.66a643bc.chunk.js.map":"e7a882cbb32a6b74c0567421e0825685311835754fea18e41ef082eefcec00db","/static/js/main.d9866310.js":"f1d90826ae032be0c77f7693362bcc64cb2e8578580b63a8e766c84612f34395","/static/js/main.d9866310.js.map":"b715875134e8e0072cc664795d113df47619ad91abb22824e4201351b4a291ba"}}
+[debug] [2024-09-02T18:01:50.064Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/384044912284/sites/listbuilder5/versions/d393a3e233e9db4a:populateFiles 200
+[debug] [2024-09-02T18:01:50.064Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/384044912284/sites/listbuilder5/versions/d393a3e233e9db4a:populateFiles {"uploadRequiredHashes":["003f5907608d654abe82f565916c11ae59fe51ffc630076c6233932944aec0d2","b715875134e8e0072cc664795d113df47619ad91abb22824e4201351b4a291ba","f1d90826ae032be0c77f7693362bcc64cb2e8578580b63a8e766c84612f34395","031468a472dcfee22df28cae9350bfe664da05ba6eb3434a5ff25f3af913b6dd","0b973d9d789f97208ac486f1a51030700418a04f07f18fa8fd9b8b6e1c418a51"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files"}
+[debug] [2024-09-02T18:01:50.065Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/003f5907608d654abe82f565916c11ae59fe51ffc630076c6233932944aec0d2 [none]
+[debug] [2024-09-02T18:01:50.065Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/003f5907608d654abe82f565916c11ae59fe51ffc630076c6233932944aec0d2 [stream]
+[debug] [2024-09-02T18:01:50.065Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/b715875134e8e0072cc664795d113df47619ad91abb22824e4201351b4a291ba [none]
+[debug] [2024-09-02T18:01:50.065Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/b715875134e8e0072cc664795d113df47619ad91abb22824e4201351b4a291ba [stream]
+[debug] [2024-09-02T18:01:50.066Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/f1d90826ae032be0c77f7693362bcc64cb2e8578580b63a8e766c84612f34395 [none]
+[debug] [2024-09-02T18:01:50.066Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/f1d90826ae032be0c77f7693362bcc64cb2e8578580b63a8e766c84612f34395 [stream]
+[debug] [2024-09-02T18:01:50.066Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/031468a472dcfee22df28cae9350bfe664da05ba6eb3434a5ff25f3af913b6dd [none]
+[debug] [2024-09-02T18:01:50.066Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/031468a472dcfee22df28cae9350bfe664da05ba6eb3434a5ff25f3af913b6dd [stream]
+[debug] [2024-09-02T18:01:50.067Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/0b973d9d789f97208ac486f1a51030700418a04f07f18fa8fd9b8b6e1c418a51 [none]
+[debug] [2024-09-02T18:01:50.067Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/0b973d9d789f97208ac486f1a51030700418a04f07f18fa8fd9b8b6e1c418a51 [stream]
+[debug] [2024-09-02T18:01:50.067Z] [hosting][populate queue][FINAL] {"max":510,"min":510,"avg":510,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":512}
+[debug] [2024-09-02T18:01:50.067Z] [hosting] uploads queued: 5
+[debug] [2024-09-02T18:01:50.612Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/031468a472dcfee22df28cae9350bfe664da05ba6eb3434a5ff25f3af913b6dd 200
+[debug] [2024-09-02T18:01:50.613Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/031468a472dcfee22df28cae9350bfe664da05ba6eb3434a5ff25f3af913b6dd [stream]
+[debug] [2024-09-02T18:01:50.659Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/003f5907608d654abe82f565916c11ae59fe51ffc630076c6233932944aec0d2 200
+[debug] [2024-09-02T18:01:50.659Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/003f5907608d654abe82f565916c11ae59fe51ffc630076c6233932944aec0d2 [stream]
+[debug] [2024-09-02T18:01:50.769Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/0b973d9d789f97208ac486f1a51030700418a04f07f18fa8fd9b8b6e1c418a51 200
+[debug] [2024-09-02T18:01:50.769Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/0b973d9d789f97208ac486f1a51030700418a04f07f18fa8fd9b8b6e1c418a51 [stream]
+[debug] [2024-09-02T18:01:50.842Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/f1d90826ae032be0c77f7693362bcc64cb2e8578580b63a8e766c84612f34395 200
+[debug] [2024-09-02T18:01:50.842Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/f1d90826ae032be0c77f7693362bcc64cb2e8578580b63a8e766c84612f34395 [stream]
+[debug] [2024-09-02T18:01:51.605Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/b715875134e8e0072cc664795d113df47619ad91abb22824e4201351b4a291ba 200
+[debug] [2024-09-02T18:01:51.605Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/listbuilder5/versions/d393a3e233e9db4a/files/b715875134e8e0072cc664795d113df47619ad91abb22824e4201351b4a291ba [stream]
+[debug] [2024-09-02T18:01:51.605Z] [hosting][upload queue][FINAL] {"max":1541,"min":548,"avg":833.4,"active":0,"complete":5,"success":5,"errored":0,"retried":0,"total":5,"elapsed":1541}
+[info] ✔  hosting[listbuilder5]: file upload complete 
+[debug] [2024-09-02T18:01:51.606Z] [hosting] deploy completed after 2215ms
+[debug] [2024-09-02T18:01:51.606Z] [
+  {
+    "config": {
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "listbuilder5"
+    },
+    "version": "projects/384044912284/sites/listbuilder5/versions/d393a3e233e9db4a"
+  }
+]
+[info] i  hosting[listbuilder5]: finalizing version... 
+[debug] [2024-09-02T18:01:51.607Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/listbuilder5/versions/d393a3e233e9db4a updateMask=status%2Cconfig
+[debug] [2024-09-02T18:01:51.607Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/listbuilder5/versions/d393a3e233e9db4a {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2024-09-02T18:01:52.389Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/listbuilder5/versions/d393a3e233e9db4a 200
+[debug] [2024-09-02T18:01:52.389Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/listbuilder5/versions/d393a3e233e9db4a {"name":"projects/384044912284/sites/listbuilder5/versions/d393a3e233e9db4a","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2024-09-02T18:01:48.596712Z","createUser":{"email":"anthony@pulcer.net"},"finalizeTime":"2024-09-02T18:01:52.236052Z","finalizeUser":{"email":"anthony@pulcer.net"}}
+[debug] [2024-09-02T18:01:52.389Z] [hosting] finalized version for listbuilder5:[object Object]
+[info] ✔  hosting[listbuilder5]: version finalized 
+[info] i  hosting[listbuilder5]: releasing new version... 
+[debug] [2024-09-02T18:01:52.390Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/listbuilder5/channels/live/releases versionName=projects%2F384044912284%2Fsites%2Flistbuilder5%2Fversions%2Fd393a3e233e9db4a
+[debug] [2024-09-02T18:01:52.390Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/listbuilder5/channels/live/releases {}
