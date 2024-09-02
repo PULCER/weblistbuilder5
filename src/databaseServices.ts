@@ -73,3 +73,14 @@ export async function getItems(userId: string, listId: string) {
     throw error;
   }
 }
+
+export async function updateListTitle(userId: string, listId: string, newTitle: string) {
+  try {
+    const listRef = doc(db, `users/${userId}/lists/${listId}`);
+    await updateDoc(listRef, { title: newTitle });
+    console.log('List title updated successfully');
+  } catch (error) {
+    console.error('Error updating list title:', error);
+    throw error;
+  }
+}

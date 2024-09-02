@@ -159,3 +159,45 @@ button:hover {
 .add-item-button:hover, .add-list-form button:hover {
   background-color: #7e22ce;
 }
+
+/* ========== Editing Component ========== */
+.edit-title-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.edit-title-input {
+  font-size: 1.5em;
+  padding: 5px;
+  margin-right: 5px;
+  width: 100%;
+}
+
+.edit-controls {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+}
+
+.edit-control-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.edit-control-button.save {
+  color: #4caf50;
+}
+
+.edit-control-button.cancel {
+  color: #f44336;
+}
+
+.edit-control-button:hover {
+  opacity: 0.8;
+}
