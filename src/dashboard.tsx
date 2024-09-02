@@ -138,7 +138,31 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
           <ChevronRight size={24} />
         </button>
       </div>
-      {/* Rest of the component remains the same */}
+      {lists.length > 0 && (
+        <ul className="items-list">
+          {lists[currentListIndex].items.map((item) => (
+            <li key={item.id}>{item.title}</li>
+          ))}
+        </ul>
+      )}
+      <div className="add-item-form">
+        <input
+          type="text"
+          value={newItemTitle}
+          onChange={(e) => setNewItemTitle(e.target.value)}
+          placeholder="New Item Title"
+        />
+        <button onClick={handleAddItem} className="add-item-button">Add Item</button>
+      </div>
+      <div className="add-list-form">
+        <input
+          type="text"
+          value={newListTitle}
+          onChange={(e) => setNewListTitle(e.target.value)}
+          placeholder="New List Title"
+        />
+        <button onClick={handleCreateList}>Create List</button>
+      </div>
     </div>
   );
 };
