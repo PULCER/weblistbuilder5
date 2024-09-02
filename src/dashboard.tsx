@@ -47,7 +47,8 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
 
   const handleCreateList = async () => {
     try {
-      await createList(userId, newListTitle);
+      const title = newListTitle.trim() === '' ? 'New List' : newListTitle;
+      await createList(userId, title);
       setNewListTitle('');
       fetchLists();
     } catch (error) {
