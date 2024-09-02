@@ -1,17 +1,15 @@
-// src/authService.ts
 import { auth, db } from './firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 
 // Sign-Up Function
-export async function signUp(email: string, password: string, username: string) {
+export async function signUp(email: string, password: string) {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
     // Save additional user info in Firestore
     await setDoc(doc(db, 'users', user.uid), {
-      username: username,
       email: email,
       createdAt: new Date(),
     });
