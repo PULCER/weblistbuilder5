@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { createList, getLists, addItemToList } from './databaseServices';
+import { createList, getLists, addItemToList, getItems } from './databaseServices';
 
 interface DashboardProps {
   userId: string;
 }
 
+interface ListItem {
+  id: string;
+  title: string;
+  notes: string;
+}
+
+interface List {
+  id: string;
+  title: string;
+  items: ListItem[];
+}
+
 const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
-  const [lists, setLists] = useState<any[]>([]);
+  const [lists, setLists] = useState<List[]>([]);
   const [newListTitle, setNewListTitle] = useState('');
   const [newItemTitle, setNewItemTitle] = useState('');
   const [newItemNotes, setNewItemNotes] = useState('');
@@ -19,7 +31,13 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
   const fetchLists = async () => {
     try {
       const fetchedLists = await getLists(userId);
-      setLists(fetchedLists);
+      const listsWithItems = await Promise.all(
+        fetchedLists.map(async (list) => {
+          const items = await getItems(userId, list.id);
+          return { ...list, items } as List;
+        })
+      );
+      setLists(listsWithItems);
     } catch (error) {
       console.error('Error fetching lists:', error);
     }
@@ -63,7 +81,14 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
       <ul>
         {lists.map((list) => (
           <li key={list.id} onClick={() => setSelectedListId(list.id)}>
-            {list.title}
+            <h3>{list.title}</h3>
+            <ul>
+              {list.items.map((item) => (
+                <li key={item.id}>
+                  <strong>{item.title}</strong>: {item.notes}
+                </li>
+              ))}
+            </ul>
           </li>
         ))}
       </ul>

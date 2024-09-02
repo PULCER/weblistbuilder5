@@ -1,5 +1,5 @@
 import { db } from './firebase';
-import { collection, addDoc, updateDoc, deleteDoc, doc, getDocs } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, deleteDoc, doc, getDocs, query } from 'firebase/firestore';
 
 export async function createList(userId: string, title: string) {
   try {
@@ -48,9 +48,28 @@ export async function addSubItemToItem(userId: string, listId: string, itemId: s
 export async function getLists(userId: string) {
   try {
     const listsSnapshot = await getDocs(collection(db, `users/${userId}/lists`));
-    return listsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return listsSnapshot.docs.map(doc => ({
+      id: doc.id,
+      title: doc.data().title,
+      createdAt: doc.data().createdAt
+    }));
   } catch (error) {
     console.error('Error getting lists:', error);
+    throw error;
+  }
+}
+
+export async function getItems(userId: string, listId: string) {
+  try {
+    const itemsSnapshot = await getDocs(query(collection(db, `users/${userId}/lists/${listId}/items`)));
+    return itemsSnapshot.docs.map(doc => ({
+      id: doc.id,
+      title: doc.data().title,
+      notes: doc.data().notes,
+      createdAt: doc.data().createdAt
+    }));
+  } catch (error) {
+    console.error('Error getting items:', error);
     throw error;
   }
 }
