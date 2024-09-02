@@ -1,4 +1,3 @@
-// src/components/SignInForm.tsx
 import React, { useState } from 'react';
 import { signIn } from './authServices';
 
@@ -11,10 +10,20 @@ const SignInForm = () => {
   };
 
   return (
-    <div>
-      <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleSignIn}>Sign In</button>
+    <div className="signin-form">
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handleSignIn}>Log In</button>
     </div>
   );
 };

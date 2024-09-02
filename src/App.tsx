@@ -4,6 +4,7 @@ import SignInForm from './signinForm';
 import Dashboard from './dashboard';
 import { onAuthStateChange, signOutUser } from './authServices';
 import { User } from 'firebase/auth';
+import './App.css';  // Import the CSS file
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -21,15 +22,16 @@ function App() {
         <h1>Welcome to List Builder</h1>
         {user ? (
           <>
-            <p>Welcome, {user.email}!</p>
-            <button onClick={signOutUser}>Sign Out</button>
             <Dashboard userId={user.uid} />
+            <button className="logout-button" onClick={signOutUser}>
+              Log Out
+            </button>
           </>
         ) : (
-          <>
-            <SignUpForm />
+          <div>
             <SignInForm />
-          </>
+            <SignUpForm />
+          </div>
         )}
       </header>
     </div>

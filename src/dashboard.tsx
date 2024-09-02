@@ -14,7 +14,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
 
   useEffect(() => {
     fetchLists();
-  }, [userId]);  // Add userId to the dependency array
+  }, [userId]);
 
   const fetchLists = async () => {
     try {
@@ -49,7 +49,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
   };
 
   return (
-    <div>
+    <div className="dashboard">
       <h2>Your Lists</h2>
       <div>
         <input

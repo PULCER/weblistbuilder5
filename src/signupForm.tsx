@@ -18,9 +18,19 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} value={email} />
-      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password} />
+    <div className="signup-form">
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
       <button onClick={handleSignUp}>Sign Up</button>
       {error && <p>{error}</p>}
     </div>
