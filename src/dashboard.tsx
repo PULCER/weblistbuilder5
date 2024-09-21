@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { createList, getLists, addItemToList, getItems, updateListTitle } from './databaseServices';
+import { getLists, getItems, updateListTitle } from './databaseServices';
 import { ChevronLeft, ChevronRight, Check, X } from 'lucide-react';
 
 interface DashboardProps {
@@ -21,8 +21,6 @@ interface List {
 const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
   const [lists, setLists] = useState<List[]>([]);
   const [currentListIndex, setCurrentListIndex] = useState(0);
-  const [newItemTitle, setNewItemTitle] = useState('');
-  const [newListTitle, setNewListTitle] = useState('');
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [editedTitle, setEditedTitle] = useState('');
 
@@ -42,29 +40,6 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
       setLists(listsWithItems);
     } catch (error) {
       console.error('Error fetching lists:', error);
-    }
-  };
-
-  const handleCreateList = async () => {
-    try {
-      const title = newListTitle.trim() === '' ? 'New List' : newListTitle;
-      await createList(userId, title);
-      setNewListTitle('');
-      fetchLists();
-    } catch (error) {
-      console.error('Error creating list:', error);
-    }
-  };
-
-  const handleAddItem = async () => {
-    if (lists.length > 0) {
-      try {
-        await addItemToList(userId, lists[currentListIndex].id, newItemTitle, '');
-        setNewItemTitle('');
-        fetchLists();
-      } catch (error) {
-        console.error('Error adding item:', error);
-      }
     }
   };
 
@@ -146,24 +121,6 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
           ))}
         </ul>
       )}
-      <div className="add-item-form">
-        <input
-          type="text"
-          value={newItemTitle}
-          onChange={(e) => setNewItemTitle(e.target.value)}
-          placeholder="New Item Title"
-        />
-        <button onClick={handleAddItem} className="add-item-button">Add Item</button>
-      </div>
-      <div className="add-list-form">
-        <input
-          type="text"
-          value={newListTitle}
-          onChange={(e) => setNewListTitle(e.target.value)}
-          placeholder="New List Title"
-        />
-        <button onClick={handleCreateList}>Create List</button>
-      </div>
     </div>
   );
 };

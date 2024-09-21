@@ -98,32 +98,6 @@ button:hover {
   text-align: left;  
 }
 
-.add-item-form, .add-list-form {
-  display: flex;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.add-item-form input, .add-list-form input {
-  flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px 0 0 4px;
-}
-
-.add-item-button, .add-list-form button {
-  padding: 10px 20px;
-  background-color: #9333ea;
-  color: white;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-}
-
-.add-item-button:hover, .add-list-form button:hover {
-  background-color: #7e22ce;
-}
-
 /* ========== Editing Component ========== */
 .edit-title-container {
   display: flex;
@@ -166,7 +140,6 @@ button:hover {
   opacity: 0.8;
 }
 
-
 .header-image {
   max-width: 100%;
   height: auto;
@@ -205,4 +178,18 @@ button:hover {
 .error-message {
   color: #f44336;
   margin-top: 10px;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
