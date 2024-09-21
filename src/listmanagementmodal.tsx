@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { createList, updateListTitle, deleteList } from './databaseServices';
+import React, { useState, useEffect } from 'react';
+import { createList, updateListTitle, deleteList, updateListRank } from './databaseServices';
+import { ChevronUp, ChevronDown } from 'lucide-react'; // Make sure to import these icons
 
 interface List {
   id: string;
   title: string;
   rank: number;
 }
+
 interface ListManagementModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -25,24 +27,17 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
 }) => {
   const [editedLists, setEditedLists] = useState<List[]>([]);
   const [hasChanges, setHasChanges] = useState(false);
-  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   useEffect(() => {
     setEditedLists(lists);
   }, [lists]);
-
-  useEffect(() => {
-    if (isOpen && inputRefs.current[currentListIndex]) {
-      inputRefs.current[currentListIndex]?.focus();
-    }
-  }, [isOpen, currentListIndex]);
 
   const handleAddList = async () => {
     const { id: newListId, rank: newRank } = await createList(userId, "New List");
     setEditedLists([...editedLists, { id: newListId, title: "New List", rank: newRank }]);
     setHasChanges(true);
   };
-  
+
   const handleListTitleChange = (index: number, newTitle: string) => {
     const updatedLists = [...editedLists];
     updatedLists[index].title = newTitle;
@@ -59,6 +54,7 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
   const handleSaveChanges = async () => {
     for (const list of editedLists) {
       await updateListTitle(userId, list.id, list.title);
+      await updateListRank(userId, list.id, list.rank);
     }
     // Delete lists that are not in editedLists
     for (const list of lists) {
@@ -71,6 +67,24 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
     onClose();
   };
 
+  const moveList = (index: number, direction: 'up' | 'down') => {
+    if ((direction === 'up' && index === 0) || (direction === 'down' && index === editedLists.length - 1)) {
+      return; // Can't move further in this direction
+    }
+
+    const newIndex = direction === 'up' ? index - 1 : index + 1;
+    const updatedLists = [...editedLists];
+    [updatedLists[index], updatedLists[newIndex]] = [updatedLists[newIndex], updatedLists[index]];
+    
+    // Update ranks
+    updatedLists.forEach((list, i) => {
+      list.rank = i + 1;
+    });
+
+    setEditedLists(updatedLists);
+    setHasChanges(true);
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -80,8 +94,15 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
         <div className="lists-scroll-view">
           {editedLists.map((list, index) => (
             <div key={list.id} className="list-item">
+              <div className="list-controls">
+                <button onClick={() => moveList(index, 'up')} disabled={index === 0}>
+                  <ChevronUp size={16} />
+                </button>
+                <button onClick={() => moveList(index, 'down')} disabled={index === editedLists.length - 1}>
+                  <ChevronDown size={16} />
+                </button>
+              </div>
               <input
-                ref={(el) => (inputRefs.current[index] = el)}
                 type="text"
                 value={list.title}
                 onChange={(e) => handleListTitleChange(index, e.target.value)}
@@ -89,15 +110,6 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
               <button 
                 onClick={() => handleDeleteList(index)} 
                 className="delete-list-button"
-                style={{
-                  backgroundColor: 'red',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  padding: '5px 10px',
-                  marginLeft: '10px',
-                  cursor: 'pointer'
-                }}
               >
                 Delete
               </button>

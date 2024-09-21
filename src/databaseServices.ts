@@ -34,6 +34,7 @@ export async function addItemToList(userId: string, listId: string, title: strin
   }
 }
 
+
 export async function addSubItemToItem(userId: string, listId: string, itemId: string, subitemtitle: string, subitemnotes: string) {
   try {
     const subItemRef = await addDoc(collection(db, `users/${userId}/lists/${listId}/items/${itemId}/subItems`), {

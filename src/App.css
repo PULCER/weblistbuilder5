@@ -169,7 +169,16 @@ button:hover {
 .list-item input {
   flex-grow: 1;
   margin-right: 10px;
-  width: calc(100% - 70px);
+}
+
+.delete-list-button {
+  margin-right: 10px;
+}
+
+.drag-handle {
+  cursor: move;
+  font-size: 20px;
+  padding: 0 5px;
 }
 
 .delete-list-button {
@@ -210,4 +219,30 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* New styles for list controls */
+.list-controls {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.list-controls button {
+  padding: 2px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9333ea;
+}
+
+.list-controls button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
