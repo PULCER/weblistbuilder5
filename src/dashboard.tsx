@@ -10,6 +10,7 @@ interface DashboardProps {
 interface List {
   id: string;
   title: string;
+  rank: number; // New field
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
@@ -26,7 +27,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
       let fetchedLists = await getLists(userId);
       if (fetchedLists.length === 0) {
         const newListId = await createList(userId, "New List");
-        fetchedLists.push({ id: newListId, title: "New List" });
+        fetchedLists = await getLists(userId); // Fetch again to get the new list with rank
       }
       setLists(fetchedLists);
     } catch (error) {

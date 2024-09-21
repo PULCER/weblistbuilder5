@@ -4,8 +4,8 @@ import { createList, updateListTitle, deleteList } from './databaseServices';
 interface List {
   id: string;
   title: string;
+  rank: number;
 }
-
 interface ListManagementModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -38,11 +38,11 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
   }, [isOpen, currentListIndex]);
 
   const handleAddList = async () => {
-    const newListId = await createList(userId, "New List");
-    setEditedLists([...editedLists, { id: newListId, title: "New List" }]);
+    const { id: newListId, rank: newRank } = await createList(userId, "New List");
+    setEditedLists([...editedLists, { id: newListId, title: "New List", rank: newRank }]);
     setHasChanges(true);
   };
-
+  
   const handleListTitleChange = (index: number, newTitle: string) => {
     const updatedLists = [...editedLists];
     updatedLists[index].title = newTitle;
