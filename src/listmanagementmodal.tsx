@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { createList, updateListTitle } from './databaseServices';
+import { createList, updateListTitle, deleteList } from './databaseServices';
 
 interface List {
   id: string;
@@ -50,9 +50,21 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
     setHasChanges(true);
   };
 
+  const handleDeleteList = (index: number) => {
+    const updatedLists = editedLists.filter((_, i) => i !== index);
+    setEditedLists(updatedLists);
+    setHasChanges(true);
+  };
+
   const handleSaveChanges = async () => {
     for (const list of editedLists) {
       await updateListTitle(userId, list.id, list.title);
+    }
+    // Delete lists that are not in editedLists
+    for (const list of lists) {
+      if (!editedLists.some(editedList => editedList.id === list.id)) {
+        await deleteList(userId, list.id);
+      }
     }
     setLists(editedLists);
     setHasChanges(false);
@@ -67,13 +79,17 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
         <h2>Manage Lists</h2>
         <div className="lists-scroll-view">
           {editedLists.map((list, index) => (
-            <input
-              key={list.id}
-              ref={(el) => (inputRefs.current[index] = el)}
-              type="text"
-              value={list.title}
-              onChange={(e) => handleListTitleChange(index, e.target.value)}
-            />
+            <div key={list.id} className="list-item">
+              <input
+                ref={(el) => (inputRefs.current[index] = el)}
+                type="text"
+                value={list.title}
+                onChange={(e) => handleListTitleChange(index, e.target.value)}
+              />
+              <button onClick={() => handleDeleteList(index)} className="delete-list-button">
+                -
+              </button>
+            </div>
           ))}
         </div>
         <button onClick={handleAddList}>Add New List</button>

@@ -183,3 +183,33 @@ code {
   margin-bottom: 10px;
   padding: 5px;
 }
+
+.list-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.list-item input {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.delete-list-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-list-button:hover {
+  background-color: #ff1a1a;
+}

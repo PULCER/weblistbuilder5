@@ -67,3 +67,13 @@ export async function updateListTitle(userId: string, listId: string, newTitle: 
     throw error;
   }
 }
+
+export async function deleteList(userId: string, listId: string) {
+  try {
+    await deleteDoc(doc(db, `users/${userId}/lists/${listId}`));
+    console.log('List deleted successfully');
+  } catch (error) {
+    console.error('Error deleting list:', error);
+    throw error;
+  }
+}
