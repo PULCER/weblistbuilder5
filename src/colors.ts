@@ -1,16 +1,29 @@
 export const colors = {
-    purple1: '#A020F0',  // Bright purple
-    purple2: '#D8BFD8',  // Light lavender
-    purple3: '#4B0082',  // Indigo
-    purple4: '#800080',  // Deep purple
-    purple5: '#8A2BE2',  // Blue violet
-  };
-  
-  // You can also add color names if you prefer:
-  export const namedColors = {
-    brightPurple: colors.purple1,
-    lightLavender: colors.purple2,
-    indigo: colors.purple3,
-    deepPurple: colors.purple4,
-    blueViolet: colors.purple5,
-  };
+  purple1: '#A020F0',  // Bright purple
+  purple2: '#D8BFD8',  // Light lavender
+  purple3: '#4B0082',  // Indigo
+  purple4: '#800080',  // Deep purple
+  purple5: '#8A2BE2',  // Blue violet
+  neonPink: '#FF6EC7', // Vibrant pink
+  neonBlue: '#00FFFF', // Cyan/Aqua
+  neonGreen: '#39FF14', // Bright green
+  hotPink: '#FF69B4', // Hot pink
+  electricBlue: '#0066FF', // Electric blue
+  retroYellow: '#FFFF00', // Bright yellow
+  retroOrange: '#FF8C00', // Dark orange
+};
+
+export const namedColors = {
+  brightPurple: colors.purple1,
+  lightLavender: colors.purple2,
+  indigo: colors.purple3,
+  deepPurple: colors.purple4,
+  blueViolet: colors.purple5,
+  flamingo: colors.neonPink,
+  aqua: colors.neonBlue,
+  limeGreen: colors.neonGreen,
+  bubblegum: colors.hotPink,
+  laserBlue: colors.electricBlue,
+  sunnyDay: colors.retroYellow,
+  sunsetOrange: colors.retroOrange,
+};
