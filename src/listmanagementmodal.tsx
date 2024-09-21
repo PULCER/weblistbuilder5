@@ -86,8 +86,20 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
                 value={list.title}
                 onChange={(e) => handleListTitleChange(index, e.target.value)}
               />
-              <button onClick={() => handleDeleteList(index)} className="delete-list-button">
-                -
+              <button 
+                onClick={() => handleDeleteList(index)} 
+                className="delete-list-button"
+                style={{
+                  backgroundColor: 'red',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  padding: '5px 10px',
+                  marginLeft: '10px',
+                  cursor: 'pointer'
+                }}
+              >
+                Delete
               </button>
             </div>
           ))}
