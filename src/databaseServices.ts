@@ -92,7 +92,7 @@ export async function addItemToList(userId: string, listId: string, title: strin
       createdAt: new Date()
     });
     console.log('Item added with ID: ', itemRef.id);
-    return { id: itemRef.id, rank: newRank };
+    return { id: itemRef.id, title, rank: newRank };
   } catch (error) {
     console.error('Error adding item:', error);
     throw error;
