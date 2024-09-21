@@ -1,7 +1,7 @@
 // src/ItemList.tsx
 import React, { useState, useEffect } from 'react';
 import { getItems, addItemToList } from './databaseServices';
-import { Plus } from 'lucide-react'; // Import the Plus icon
+import { Plus } from 'lucide-react';
 
 interface Item {
   id: string;
@@ -52,6 +52,17 @@ const ItemList: React.FC<ItemListProps> = ({ userId, listId }) => {
 
   return (
     <div className="item-list">
+      {items.length === 0 ? (
+        <p>No items in this list yet.</p>
+      ) : (
+        <ul>
+          {items.map((item) => (
+            <li key={item.id} className="item">
+              <span className="item-title">{item.title}</span>
+            </li>
+          ))}
+        </ul>
+      )}
       <div className="add-item-form">
         <input
           type="text"
@@ -65,17 +76,6 @@ const ItemList: React.FC<ItemListProps> = ({ userId, listId }) => {
           Add Item
         </button>
       </div>
-      {items.length === 0 ? (
-        <p>No items in this list yet.</p>
-      ) : (
-        <ul>
-          {items.map((item) => (
-            <li key={item.id} className="item">
-              <span className="item-title">{item.title}</span>
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 };
