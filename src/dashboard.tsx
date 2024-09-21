@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getLists, createList, updateListTitle } from './databaseServices';
-import { ChevronLeft, ChevronRight, Check, X } from 'lucide-react';
+import { getLists, createList } from './databaseServices';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import ListManagementModal from './listmanagementmodal';
 
 interface DashboardProps {
   userId: string;
@@ -14,8 +15,7 @@ interface List {
 const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
   const [lists, setLists] = useState<List[]>([]);
   const [currentListIndex, setCurrentListIndex] = useState(0);
-  const [isEditingTitle, setIsEditingTitle] = useState(false);
-  const [editedTitle, setEditedTitle] = useState('');
+  const [isListModalOpen, setIsListModalOpen] = useState(false);
 
   useEffect(() => {
     fetchLists();
@@ -35,81 +35,61 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
   };
 
   const handlePrevList = () => {
-    setCurrentListIndex((prevIndex) => 
-      prevIndex > 0 ? prevIndex - 1 : lists.length - 1
-    );
+    setCurrentListIndex((prevIndex) => prevIndex - 1);
   };
 
   const handleNextList = () => {
-    setCurrentListIndex((prevIndex) => 
-      prevIndex < lists.length - 1 ? prevIndex + 1 : 0
-    );
+    setCurrentListIndex((prevIndex) => prevIndex + 1);
   };
 
-  const handleEditTitle = () => {
-    setEditedTitle(lists[currentListIndex].title);
-    setIsEditingTitle(true);
+  const handleOpenListModal = () => {
+    setIsListModalOpen(true);
   };
 
-  const handleSaveTitle = async () => {
-    try {
-      await updateListTitle(userId, lists[currentListIndex].id, editedTitle);
-      const updatedLists = [...lists];
-      updatedLists[currentListIndex].title = editedTitle;
-      setLists(updatedLists);
-      setIsEditingTitle(false);
-    } catch (error) {
-      console.error('Error updating list title:', error);
-    }
+  const handleCloseListModal = () => {
+    setIsListModalOpen(false);
+    fetchLists(); // Refresh lists after closing modal
   };
 
-  const handleCancelEdit = () => {
-    setIsEditingTitle(false);
-  };
+  const showPrevButton = currentListIndex > 0;
+  const showNextButton = currentListIndex < lists.length - 1;
 
   return (
     <div className="dashboard">
       <div className="list-carousel">
-        <button onClick={handlePrevList} className="carousel-button">
-          <ChevronLeft size={24} />
-        </button>
+        {showPrevButton && (
+          <button onClick={handlePrevList} className="carousel-button">
+            <ChevronLeft size={24} />
+          </button>
+        )}
         {lists.length > 0 ? (
           <div className="list-name">
-            {isEditingTitle ? (
-              <div className="edit-title-container">
-                <input
-                  type="text"
-                  value={editedTitle}
-                  onChange={(e) => setEditedTitle(e.target.value)}
-                  className="edit-title-input"
-                />
-                <div className="edit-controls">
-                  <button onClick={handleSaveTitle} className="edit-control-button save">
-                    <Check size={20} />
-                  </button>
-                  <button onClick={handleCancelEdit} className="edit-control-button cancel">
-                    <X size={20} />
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <h2 onClick={handleEditTitle}>{lists[currentListIndex].title}</h2>
-            )}
+            <h2>{lists[currentListIndex].title}</h2>
           </div>
         ) : (
           <div className="list-name">
             <h2>No Lists</h2>
           </div>
         )}
-        <button onClick={handleNextList} className="carousel-button">
-          <ChevronRight size={24} />
-        </button>
+        {showNextButton && (
+          <button onClick={handleNextList} className="carousel-button">
+            <ChevronRight size={24} />
+          </button>
+        )}
       </div>
+      <button onClick={handleOpenListModal}>Manage Lists</button>
       {lists.length > 0 && (
         <div className="current-list">
-          {/* You can add functionality to display or edit list content here */}
+          {/* You can add functionality to display list content here */}
         </div>
       )}
+      <ListManagementModal
+        isOpen={isListModalOpen}
+        onClose={handleCloseListModal}
+        userId={userId}
+        lists={lists}
+        setLists={setLists}
+      />
     </div>
   );
 };
