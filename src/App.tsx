@@ -4,7 +4,8 @@ import SignInForm from './signinForm';
 import Dashboard from './dashboard';
 import { onAuthStateChange, signOutUser } from './authServices';
 import { User } from 'firebase/auth';
-import './App.css';  // Import the CSS file
+import './App.css';
+import headerSvg from './assets/headerpng.png';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -19,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Welcome to List Builder</h1>
+        <img src={headerSvg} alt="List Builder" className="header-image" />
       </header>
       <main className="App-main">
         {user ? (

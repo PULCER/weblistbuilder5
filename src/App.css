@@ -8,9 +8,10 @@
 }
 
 .App-header {
-  padding: 20px;
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #ddd;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .App-main {
@@ -201,4 +202,11 @@ button:hover {
 
 .edit-control-button:hover {
   opacity: 0.8;
+}
+
+
+.header-image {
+  max-width: 100%;
+  height: auto;
+  padding: 20px;
 }
