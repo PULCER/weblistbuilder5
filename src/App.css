@@ -210,3 +210,37 @@ button:hover {
   height: auto;
   padding: 20px;
 }
+
+/* In src/App.css, add these styles */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.auth-form input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.auth-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.auth-buttons button {
+  flex: 1;
+  margin: 0 5px;
+}
+
+.error-message {
+  color: #f44336;
+  margin-top: 10px;
+}

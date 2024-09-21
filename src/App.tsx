@@ -1,6 +1,6 @@
+// src/App.tsx
 import React, { useState, useEffect } from 'react';
-import SignUpForm from './signupForm';
-import SignInForm from './signinForm';
+import AuthForm from './authform';
 import Dashboard from './dashboard';
 import { onAuthStateChange, signOutUser } from './authServices';
 import { User } from 'firebase/auth';
@@ -26,10 +26,7 @@ function App() {
         {user ? (
           <Dashboard userId={user.uid} />
         ) : (
-          <div>
-            <SignInForm />
-            <SignUpForm />
-          </div>
+          <AuthForm />
         )}
       </main>
       {user && (
