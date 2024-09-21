@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { getLists, getItems, updateListTitle } from './databaseServices';
+import { getLists, createList, updateListTitle } from './databaseServices';
 import { ChevronLeft, ChevronRight, Check, X } from 'lucide-react';
 
 interface DashboardProps {
   userId: string;
 }
 
-interface ListItem {
-  id: string;
-  title: string;
-  notes: string;
-}
-
 interface List {
   id: string;
   title: string;
-  items: ListItem[];
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
@@ -30,14 +23,12 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
 
   const fetchLists = async () => {
     try {
-      const fetchedLists = await getLists(userId);
-      const listsWithItems = await Promise.all(
-        fetchedLists.map(async (list) => {
-          const items = await getItems(userId, list.id);
-          return { ...list, items } as List;
-        })
-      );
-      setLists(listsWithItems);
+      let fetchedLists = await getLists(userId);
+      if (fetchedLists.length === 0) {
+        const newListId = await createList(userId, "List 1");
+        fetchedLists.push({ id: newListId, title: "List 1" });
+      }
+      setLists(fetchedLists);
     } catch (error) {
       console.error('Error fetching lists:', error);
     }
@@ -115,11 +106,9 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
         </button>
       </div>
       {lists.length > 0 && (
-        <ul className="items-list">
-          {lists[currentListIndex].items.map((item) => (
-            <li key={item.id}>{item.title}</li>
-          ))}
-        </ul>
+        <div className="current-list">
+          {/* You can add functionality to display or edit list content here */}
+        </div>
       )}
     </div>
   );

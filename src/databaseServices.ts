@@ -4,8 +4,7 @@ import { collection, addDoc, updateDoc, deleteDoc, doc, getDocs, query } from 'f
 export async function createList(userId: string, title: string) {
   try {
     const listRef = await addDoc(collection(db, `users/${userId}/lists`), {
-      title,
-      createdAt: new Date()
+      title
     });
     console.log('List created with ID: ', listRef.id);
     return listRef.id;
@@ -50,26 +49,10 @@ export async function getLists(userId: string) {
     const listsSnapshot = await getDocs(collection(db, `users/${userId}/lists`));
     return listsSnapshot.docs.map(doc => ({
       id: doc.id,
-      title: doc.data().title,
-      createdAt: doc.data().createdAt
+      title: doc.data().title
     }));
   } catch (error) {
     console.error('Error getting lists:', error);
-    throw error;
-  }
-}
-
-export async function getItems(userId: string, listId: string) {
-  try {
-    const itemsSnapshot = await getDocs(query(collection(db, `users/${userId}/lists/${listId}/items`)));
-    return itemsSnapshot.docs.map(doc => ({
-      id: doc.id,
-      title: doc.data().title,
-      notes: doc.data().notes,
-      createdAt: doc.data().createdAt
-    }));
-  } catch (error) {
-    console.error('Error getting items:', error);
     throw error;
   }
 }
