@@ -50,44 +50,6 @@ button:hover {
   transform: translateX(-50%);
 }
 
-/* ========== SignInForm Component ========== */
-.signin-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.signin-form input {
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.signin-form button {
-  margin-top: 10px;
-}
-
-/* ========== SignUpForm Component ========== */
-.signup-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.signup-form input {
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.signup-form button {
-  margin-top: 10px;
-}
-
 /* ========== Dashboard Component ========== */
 .dashboard {
   display: flex;
