@@ -47,9 +47,9 @@ button:hover {
 }
 
 .header-image {
-  max-width: 100%;
+  max-width: 50%;  /* Reduce from 100% to 50% */
   height: auto;
-  padding: 20px;
+  padding: 10px;  /* Reduce padding from 20px to 10px */
 }
 
 /* Authentication Form */
