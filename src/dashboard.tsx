@@ -1,7 +1,9 @@
+// src/Dashboard.tsx
 import React, { useState, useEffect } from 'react';
 import { getLists, createList } from './databaseServices';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ListManagementModal from './listmanagementmodal';
+import ItemList from './itemlist';
 
 interface DashboardProps {
   userId: string;
@@ -10,7 +12,7 @@ interface DashboardProps {
 interface List {
   id: string;
   title: string;
-  rank: number; // New field
+  rank: number;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
@@ -27,7 +29,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
       let fetchedLists = await getLists(userId);
       if (fetchedLists.length === 0) {
         const newListId = await createList(userId, "New List");
-        fetchedLists = await getLists(userId); // Fetch again to get the new list with rank
+        fetchedLists = await getLists(userId);
       }
       setLists(fetchedLists);
     } catch (error) {
@@ -36,11 +38,11 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
   };
 
   const handlePrevList = () => {
-    setCurrentListIndex((prevIndex) => prevIndex - 1);
+    setCurrentListIndex((prevIndex) => Math.max(0, prevIndex - 1));
   };
 
   const handleNextList = () => {
-    setCurrentListIndex((prevIndex) => prevIndex + 1);
+    setCurrentListIndex((prevIndex) => Math.min(lists.length - 1, prevIndex + 1));
   };
 
   const handleOpenListModal = () => {
@@ -49,7 +51,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
 
   const handleCloseListModal = () => {
     setIsListModalOpen(false);
-    fetchLists(); // Refresh lists after closing modal
+    fetchLists();
   };
 
   const showPrevButton = currentListIndex > 0;
@@ -80,7 +82,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
       </div>
       {lists.length > 0 && (
         <div className="current-list">
-          {/* You can add functionality to display list content here */}
+          <ItemList userId={userId} listId={lists[currentListIndex].id} />
         </div>
       )}
       <ListManagementModal
