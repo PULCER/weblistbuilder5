@@ -331,3 +331,12 @@ code {
 .add-item-button svg {
   margin-right: 5px;
 }
+
+/* .carousel-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.carousel-button:disabled {
+  pointer-events: none;
+} */

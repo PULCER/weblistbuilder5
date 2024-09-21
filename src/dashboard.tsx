@@ -38,11 +38,15 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
   };
 
   const handlePrevList = () => {
-    setCurrentListIndex((prevIndex) => Math.max(0, prevIndex - 1));
+    if (currentListIndex > 0) {
+      setCurrentListIndex(prevIndex => prevIndex - 1);
+    }
   };
 
   const handleNextList = () => {
-    setCurrentListIndex((prevIndex) => Math.min(lists.length - 1, prevIndex + 1));
+    if (currentListIndex < lists.length - 1) {
+      setCurrentListIndex(prevIndex => prevIndex + 1);
+    }
   };
 
   const handleOpenListModal = () => {
@@ -54,17 +58,19 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
     fetchLists();
   };
 
-  const showPrevButton = currentListIndex > 0;
-  const showNextButton = currentListIndex < lists.length - 1;
+  const isFirstList = currentListIndex === 0;
+  const isLastList = currentListIndex === lists.length - 1;
 
   return (
     <div className="dashboard">
       <div className="list-carousel">
-        {showPrevButton && (
-          <button onClick={handlePrevList} className="carousel-button">
-            <ChevronLeft size={24} />
-          </button>
-        )}
+        <button 
+          onClick={handlePrevList} 
+          className={`carousel-button ${isFirstList ? 'disabled' : ''}`}
+          disabled={isFirstList}
+        >
+          <ChevronLeft size={24} />
+        </button>
         {lists.length > 0 ? (
           <div className="list-name" onClick={handleOpenListModal}>
             <h2>{lists[currentListIndex].title}</h2>
@@ -74,11 +80,13 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
             <h2>No Lists</h2>
           </div>
         )}
-        {showNextButton && (
-          <button onClick={handleNextList} className="carousel-button">
-            <ChevronRight size={24} />
-          </button>
-        )}
+        <button 
+          onClick={handleNextList} 
+          className={`carousel-button ${isLastList ? 'disabled' : ''}`}
+          disabled={isLastList}
+        >
+          <ChevronRight size={24} />
+        </button>
       </div>
       {lists.length > 0 && (
         <div className="current-list">
