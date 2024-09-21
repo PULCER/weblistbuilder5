@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createList, updateListTitle } from './databaseServices';
 
 interface List {
@@ -12,6 +12,7 @@ interface ListManagementModalProps {
   userId: string;
   lists: List[];
   setLists: React.Dispatch<React.SetStateAction<List[]>>;
+  currentListIndex: number;
 }
 
 const ListManagementModal: React.FC<ListManagementModalProps> = ({
@@ -20,13 +21,21 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
   userId,
   lists,
   setLists,
+  currentListIndex,
 }) => {
   const [editedLists, setEditedLists] = useState<List[]>([]);
   const [hasChanges, setHasChanges] = useState(false);
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   useEffect(() => {
     setEditedLists(lists);
   }, [lists]);
+
+  useEffect(() => {
+    if (isOpen && inputRefs.current[currentListIndex]) {
+      inputRefs.current[currentListIndex]?.focus();
+    }
+  }, [isOpen, currentListIndex]);
 
   const handleAddList = async () => {
     const newListId = await createList(userId, "New List");
@@ -47,6 +56,7 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
     }
     setLists(editedLists);
     setHasChanges(false);
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -59,6 +69,7 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
           {editedLists.map((list, index) => (
             <input
               key={list.id}
+              ref={(el) => (inputRefs.current[index] = el)}
               type="text"
               value={list.title}
               onChange={(e) => handleListTitleChange(index, e.target.value)}

@@ -25,8 +25,8 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
     try {
       let fetchedLists = await getLists(userId);
       if (fetchedLists.length === 0) {
-        const newListId = await createList(userId, "List 1");
-        fetchedLists.push({ id: newListId, title: "List 1" });
+        const newListId = await createList(userId, "New List");
+        fetchedLists.push({ id: newListId, title: "New List" });
       }
       setLists(fetchedLists);
     } catch (error) {
@@ -63,7 +63,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
           </button>
         )}
         {lists.length > 0 ? (
-          <div className="list-name">
+          <div className="list-name" onClick={handleOpenListModal}>
             <h2>{lists[currentListIndex].title}</h2>
           </div>
         ) : (
@@ -77,7 +77,6 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
           </button>
         )}
       </div>
-      <button onClick={handleOpenListModal}>Manage Lists</button>
       {lists.length > 0 && (
         <div className="current-list">
           {/* You can add functionality to display list content here */}
@@ -89,6 +88,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userId }) => {
         userId={userId}
         lists={lists}
         setLists={setLists}
+        currentListIndex={currentListIndex}
       />
     </div>
   );
