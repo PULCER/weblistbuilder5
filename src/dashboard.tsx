@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { getLists, createList } from './databaseServices';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import ListManagementModal from './listmanagementmodal';
+import ListManagementModal from './modals/listmanagementmodal';
 import ItemList from './itemlist';
 
 interface DashboardProps {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { createList, updateListTitle, deleteList, updateListRank } from './databaseServices';
+import { createList, updateListTitle, deleteList, updateListRank } from '../databaseServices';
 import { ChevronUp, ChevronDown } from 'lucide-react'; // Make sure to import these icons
 
 interface List {
@@ -92,29 +92,29 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
       <div className="modal-content">
         <h2>Manage Lists</h2>
         <div className="lists-scroll-view">
-          {editedLists.map((list, index) => (
-            <div key={list.id} className="list-item">
-              <div className="list-controls">
-                <button onClick={() => moveList(index, 'up')} disabled={index === 0}>
-                  <ChevronUp size={16} />
-                </button>
-                <button onClick={() => moveList(index, 'down')} disabled={index === editedLists.length - 1}>
-                  <ChevronDown size={16} />
-                </button>
-              </div>
-              <input
-                type="text"
-                value={list.title}
-                onChange={(e) => handleListTitleChange(index, e.target.value)}
-              />
-              <button 
-                onClick={() => handleDeleteList(index)} 
-                className="delete-list-button"
-              >
-                Delete
-              </button>
-            </div>
-          ))}
+        {editedLists.map((list, index) => (
+  <div key={list.id} className="list-row">
+    <div className="list-controls">
+      <button onClick={() => moveList(index, 'up')} disabled={index === 0}>
+        <ChevronUp size={16} />
+      </button>
+      <button onClick={() => moveList(index, 'down')} disabled={index === editedLists.length - 1}>
+        <ChevronDown size={16} />
+      </button>
+    </div>
+    <input
+      type="text"
+      value={list.title}
+      onChange={(e) => handleListTitleChange(index, e.target.value)}
+    />
+    <button 
+      onClick={() => handleDeleteList(index)} 
+      className="delete-list-button"
+    >
+      Delete
+    </button>
+  </div>
+))}
         </div>
         <button onClick={handleAddList}>Add New List</button>
         {hasChanges && <button onClick={handleSaveChanges}>Save Changes</button>}

@@ -1,0 +1,127 @@
+/* modal.css */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.modal-content textarea {
+  height: 100px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-actions button {
+  flex: 1;
+  margin: 0 5px;
+}
+
+.lists-scroll-view {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.list-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 0 10px;
+  border: 1px solid transparent; /* Changed from red to transparent */
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 50px;
+}
+
+.list-controls {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  height: 100%;
+}
+
+.list-controls button {
+  flex: 1;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9333ea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-row input {
+  flex-grow: 1;
+  height: 36px;
+  margin: 0 10px 0 0;
+  padding: 0 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.delete-list-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0 10px;
+  font-size: 14px;
+  cursor: pointer;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-list-button:hover {
+  background-color: #ff1a1a;
+}
+
+.list-controls button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.delete-button {
+  background-color: #ff4d4d;
+}
+
+.delete-button:hover {
+  background-color: #ff1a1a;
+}

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { getItems, addItemToList } from './databaseServices';
 import { Plus } from 'lucide-react';
-import ItemModal from './itemmodal';
+import ItemModal from './modals/itemmodal';
 
 interface Item {
   id: string;

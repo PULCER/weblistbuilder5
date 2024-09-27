@@ -1,6 +1,6 @@
 // src/ItemModal.tsx
 import React, { useState, useEffect } from 'react';
-import { updateItemTitle, updateItemDescription, deleteItem } from './databaseServices';
+import { updateItemTitle, updateItemDescription, deleteItem } from '../databaseServices';
 
 interface ItemModalProps {
   isOpen: boolean;
