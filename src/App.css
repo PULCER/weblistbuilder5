@@ -47,9 +47,9 @@ button:hover {
 }
 
 .header-image {
-  max-width: 80%;  /* Reduce from 100% to 50% */
+  max-width: 80%;
   height: auto;
-  padding: 10px;  /* Reduce padding from 20px to 10px */
+  padding: 10px;
 }
 
 /* Authentication Form */
@@ -131,120 +131,6 @@ button:hover {
   margin-bottom: 10px;
   border-radius: 4px;
   text-align: left;  
-}
-
-/* Modal styles */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 90%;
-  max-width: 400px;
-}
-
-.lists-scroll-view {
-  max-height: 300px;
-  overflow-y: auto;
-  margin-bottom: 20px;
-}
-
-.list-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.list-item input {
-  flex-grow: 1;
-  margin-right: 10px;
-}
-
-.delete-list-button {
-  margin-right: 10px;
-}
-
-.drag-handle {
-  cursor: move;
-  font-size: 20px;
-  padding: 0 5px;
-}
-
-.delete-list-button {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  width: 60px;
-  padding: 5px 10px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.delete-list-button:hover {
-  background-color: #ff1a1a;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.modal-actions button {
-  flex: 1;
-  margin: 0 5px;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-/* New styles for list controls */
-.list-controls {
-  display: flex;
-  flex-direction: column;
-  margin-right: 10px;
-}
-
-.list-controls button {
-  padding: 2px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #9333ea;
-}
-
-.list-controls button:disabled {
-  color: #ccc;
-  cursor: not-allowed;
-}
-
-.list-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
 }
 
 /* Item List styles */
@@ -330,62 +216,4 @@ code {
 
 .add-item-button svg {
   margin-right: 5px;
-}
-
-/* .carousel-button.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.carousel-button:disabled {
-  pointer-events: none;
-} */
-
-/* Add these styles to your CSS file */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 90%;
-  max-width: 500px;
-}
-
-.modal-content h2 {
-  margin-top: 0;
-}
-
-.modal-content input,
-.modal-content textarea {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 5px;
-}
-
-.modal-content textarea {
-  height: 100px;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: space-between;
-}
-
-.delete-button {
-  background-color: #ff4d4d;
-}
-
-.delete-button:hover {
-  background-color: #ff1a1a;
 }

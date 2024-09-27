@@ -5,6 +5,7 @@ import Dashboard from './dashboard';
 import { onAuthStateChange, signOutUser } from './authServices';
 import { User } from 'firebase/auth';
 import './App.css';
+import './modal.css';
 import headerSvg from './assets/headerpng.png';
 
 function App() {
