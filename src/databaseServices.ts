@@ -209,3 +209,14 @@ export async function deleteSubItem(userId: string, listId: string, itemId: stri
     throw error;
   }
 }
+
+export async function updateItemDescription(userId: string, listId: string, itemId: string, newDescription: string) {
+  try {
+    const itemRef = doc(db, `users/${userId}/lists/${listId}/items/${itemId}`);
+    await updateDoc(itemRef, { description: newDescription });
+    console.log('Item description updated successfully');
+  } catch (error) {
+    console.error('Error updating item description:', error);
+    throw error;
+  }
+}

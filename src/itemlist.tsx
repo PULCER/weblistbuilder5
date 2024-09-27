@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { getItems, addItemToList } from './databaseServices';
 import { Plus } from 'lucide-react';
+import ItemModal from './itemmodal';
 
 interface Item {
   id: string;
   title: string;
+  description?: string;
   rank: number;
 }
 
@@ -18,6 +20,8 @@ const ItemList: React.FC<ItemListProps> = ({ userId, listId }) => {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   const [newItemTitle, setNewItemTitle] = useState('');
+  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchItems();
@@ -46,6 +50,16 @@ const ItemList: React.FC<ItemListProps> = ({ userId, listId }) => {
     }
   };
 
+  const handleItemClick = (item: Item) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedItem(null);
+    setIsModalOpen(false);
+  };
+
   if (loading) {
     return <div>Loading items...</div>;
   }
@@ -57,7 +71,7 @@ const ItemList: React.FC<ItemListProps> = ({ userId, listId }) => {
       ) : (
         <ul>
           {items.map((item) => (
-            <li key={item.id} className="item">
+            <li key={item.id} className="item" onClick={() => handleItemClick(item)}>
               <span className="item-title">{item.title}</span>
             </li>
           ))}
@@ -76,6 +90,16 @@ const ItemList: React.FC<ItemListProps> = ({ userId, listId }) => {
           Add Item
         </button>
       </div>
+      {selectedItem && (
+        <ItemModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          userId={userId}
+          listId={listId}
+          item={selectedItem}
+          onItemUpdate={fetchItems}
+        />
+      )}
     </div>
   );
 };
