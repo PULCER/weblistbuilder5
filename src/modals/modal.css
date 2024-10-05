@@ -46,6 +46,17 @@
   margin: 0 5px;
 }
 
+.list-management-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.list-management-buttons button {
+  flex: 1;
+  margin: 0 5px;
+}
+
 .lists-scroll-view {
   max-height: 300px;
   overflow-y: auto;

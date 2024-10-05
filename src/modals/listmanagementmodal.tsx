@@ -116,9 +116,11 @@ const ListManagementModal: React.FC<ListManagementModalProps> = ({
   </div>
 ))}
         </div>
-        <button onClick={handleAddList}>Add New List</button>
-        {hasChanges && <button onClick={handleSaveChanges}>Save Changes</button>}
-        <button onClick={onClose}>Close</button>
+        <div className="list-management-buttons">
+  <button onClick={handleAddList}>Add New List</button>
+  {hasChanges && <button onClick={handleSaveChanges}>Save Changes</button>}
+  <button onClick={onClose}>Close</button>
+</div>
       </div>
     </div>
   );
