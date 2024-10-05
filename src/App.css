@@ -151,15 +151,15 @@ button:hover {
 }
 
 .item {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(70, 60, 110, 0.6); /* Slightly lighter purple */
   border: 1px solid var(--color-neonBlue);
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 15px;
+  border-radius: 4px; /* Less rounded corners */
+  padding: 12px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   transition: all 0.3s ease;
-  box-shadow: 0 0 10px var(--color-neonBlue);
+  box-shadow: 0 0 5px var(--color-neonBlue); /* Reduced glow */
 }
 
 .item:hover {
@@ -169,9 +169,8 @@ button:hover {
 
 .item-title {
   font-size: 18px;
-  color: var(--color-neonPink);
+  color: white;
   flex-grow: 1;
-  text-shadow: 0 0 5px var(--color-neonPink);
 }
 
 .item-actions {
