@@ -4,6 +4,7 @@ export const colors = {
   purple3: '#4B0082',  // Indigo
   purple4: '#800080',  // Deep purple
   purple5: '#8A2BE2',  // Blue violet
+  darkPurple: '#1A0033', // Dark purple
   neonPink: '#FF6EC7', // Vibrant pink
   neonBlue: '#00FFFF', // Cyan/Aqua
   neonGreen: '#39FF14', // Bright green

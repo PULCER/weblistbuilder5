@@ -1,13 +1,14 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--color-electricBlue);
+  background-color: var(--color-darkPurple);
   min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: white; /* Set text color to white for better contrast */
 }
 
 code {
