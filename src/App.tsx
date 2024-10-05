@@ -6,10 +6,15 @@ import { onAuthStateChange, signOutUser } from './authServices';
 import { User } from 'firebase/auth';
 import './App.css';
 import './modals/modal.css';
-import headerSvg from './assets/headerpng.png';
+import headerSvg from './assets/headertransparent.png';
+import { colors } from './colors';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
+
+  Object.entries(colors).forEach(([key, value]) => {
+    document.documentElement.style.setProperty(`--color-${key}`, value);
+  });
 
   useEffect(() => {
     const unsubscribe = onAuthStateChange((user) => {

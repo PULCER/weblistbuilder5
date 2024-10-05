@@ -16,7 +16,7 @@
 
 .App-main {
   flex-grow: 1;
-  padding: 0 20px; 
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,6 +47,7 @@ button:hover {
 }
 
 .header-image {
+  padding: 20px;
   max-width: 50%;
   height: auto;
 }
