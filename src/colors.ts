@@ -12,6 +12,9 @@ export const colors = {
   electricBlue: '#0066FF', // Electric blue
   retroYellow: '#FFFF00', // Bright yellow
   retroOrange: '#FF8C00', // Dark orange
+  itemBackground: 'rgba(41, 41, 97, 0.6)', // Dark blue with transparency
+  brightText: '#E0FFFF', // Very light cyan, almost white
+  itemBorder: '#00FFFF', // Cyan for borders
 };
 
 export const namedColors = {
@@ -27,4 +30,7 @@ export const namedColors = {
   laserBlue: colors.electricBlue,
   sunnyDay: colors.retroYellow,
   sunsetOrange: colors.retroOrange,
+  itemBg: colors.itemBackground,
+  text: colors.brightText,
+  border: colors.itemBorder,
 };
