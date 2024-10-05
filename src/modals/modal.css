@@ -6,29 +6,27 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(26, 0, 51, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(26, 0, 51, 0.8);
 }
 
 .modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 90%;
-  max-width: 500px;
   background-color: var(--color-darkPurple);
+  padding: 20px;
   border: 2px solid var(--color-neonBlue);
   border-radius: 8px;
   box-shadow: 0 0 20px var(--color-neonBlue);
   color: white;
+  width: 90%;
+  max-width: 500px;
 }
 
 .modal-content h2 {
   color: var(--color-neonPink);
   text-shadow: 0 0 10px var(--color-neonPink);
+  margin-top: 0;
 }
 
 .modal-content input,
@@ -103,77 +101,109 @@
   overflow-y: auto;
   margin-bottom: 20px;
   padding: 10px;
+  border: 1px solid var(--color-neonBlue);
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.lists-scroll-view::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lists-scroll-view::-webkit-scrollbar-thumb {
+  background-color: var(--color-neonBlue);
+  border-radius: 4px;
+}
+
+.lists-scroll-view::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .list-row {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  padding: 0 10px;
-  border: 1px solid transparent; /* Changed from red to transparent */
+  padding: 8px;
+  border: 1px solid var(--color-neonBlue);
   border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
   width: 100%;
   box-sizing: border-box;
-  height: 50px;
+}
+
+.list-row:hover {
+  box-shadow: 0 0 10px var(--color-neonBlue);
 }
 
 .list-controls {
   display: flex;
   flex-direction: column;
   margin-right: 10px;
-  height: 100%;
 }
 
 .list-controls button {
-  flex: 1;
-  padding: 0;
   background: none;
   border: none;
   cursor: pointer;
-  color: #9333ea;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: var(--color-neonGreen);
+  transition: all 0.3s ease;
+}
+
+.list-controls button:hover {
+  color: var(--color-neonYellow);
+  text-shadow: 0 0 5px var(--color-neonYellow);
+}
+
+.list-controls button:disabled {
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
 }
 
 .list-row input {
   flex-grow: 1;
-  height: 36px;
-  margin: 0 10px 0 0;
-  padding: 0 10px;
+  background-color: transparent;
+  border: none;
+  color: white;
   font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+  padding: 5px;
+}
+
+.list-row input:focus {
+  outline: none;
+  box-shadow: 0 0 5px var(--color-neonPink);
 }
 
 .delete-list-button {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
+  background-color: transparent;
+  border: 1px solid var(--color-neonPink);
+  color: var(--color-neonPink);
   border-radius: 4px;
-  padding: 0 10px;
-  font-size: 14px;
+  padding: 5px 10px;
+  font-size: 12px;
   cursor: pointer;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .delete-list-button:hover {
-  background-color: #ff1a1a;
+  background-color: var(--color-neonPink);
+  color: var(--color-darkPurple);
+  box-shadow: 0 0 10px var(--color-neonPink);
 }
 
-.list-controls button:disabled {
-  color: #ccc;
-  cursor: not-allowed;
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--color-neonBlue);
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.delete-button {
-  background-color: #ff4d4d;
-}
-
-.delete-button:hover {
-  background-color: #ff1a1a;
+.modal-close:hover {
+  color: var(--color-neonPink);
+  text-shadow: 0 0 10px var(--color-neonPink);
 }
