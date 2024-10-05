@@ -10,6 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(26, 0, 51, 0.8);
 }
 
 .modal-content {
@@ -18,10 +19,16 @@
   border-radius: 5px;
   width: 90%;
   max-width: 500px;
+  background-color: var(--color-darkPurple);
+  border: 2px solid var(--color-neonBlue);
+  border-radius: 8px;
+  box-shadow: 0 0 20px var(--color-neonBlue);
+  color: white;
 }
 
 .modal-content h2 {
-  margin-top: 0;
+  color: var(--color-neonPink);
+  text-shadow: 0 0 10px var(--color-neonPink);
 }
 
 .modal-content input,
@@ -29,10 +36,19 @@
   width: 100%;
   margin-bottom: 10px;
   padding: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-neonBlue);
+  color: white;
+  border-radius: 4px;
 }
 
 .modal-content textarea {
   height: 100px;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+  box-shadow: 0 0 10px var(--color-neonBlue);
 }
 
 .modal-actions {
@@ -44,6 +60,31 @@
 .modal-actions button {
   flex: 1;
   margin: 0 5px;
+  background-color: transparent;
+  border: 1px solid var(--color-neonGreen);
+  color: var(--color-neonGreen);
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-actions button:hover {
+  background-color: var(--color-neonGreen);
+  color: var(--color-darkPurple);
+  box-shadow: 0 0 15px var(--color-neonGreen);
+}
+
+.modal-actions .delete-button {
+  border-color: var(--color-neonPink);
+  color: var(--color-neonPink);
+}
+
+.modal-actions .delete-button:hover {
+  background-color: var(--color-neonPink);
+  color: var(--color-darkPurple);
+  box-shadow: 0 0 15px var(--color-neonPink);
 }
 
 .list-management-buttons {
